@@ -56,7 +56,7 @@ function Fetching({ valueDominio }) {
     return (
         <div className="container-de-cards">
             <p>Valor obtenido en Top: {valueDominio}</p>
-            <Cards uber={datos} />
+            <Cards uber={datos} sites={sites} />
         </div>
     );
 }

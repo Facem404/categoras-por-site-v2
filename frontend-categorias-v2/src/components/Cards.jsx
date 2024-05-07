@@ -1,5 +1,6 @@
 // eslint-disable-next-line react/prop-types
-function Cards({ uber }) {
+function Cards({ uber, sites }) {
+    console.log(sites);
     return (
         <div className="card">
             <div>
@@ -8,7 +9,7 @@ function Cards({ uber }) {
                 {uber.map((dato, index) => (
                     <div key={index}>
                         {/* Renderiza cada tarjeta utilizando los datos */}
-                        <h2>{dato.categoria}</h2>
+                        <h4>{sites[index]}</h4>
                         <ul>
                             {dato.data &&
                                 Array.isArray(dato.data) &&
@@ -27,4 +28,3 @@ function Cards({ uber }) {
 }
 
 export default Cards;
-//a
