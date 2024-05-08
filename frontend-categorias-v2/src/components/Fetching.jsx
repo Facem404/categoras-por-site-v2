@@ -1,9 +1,12 @@
 import '../index.css';
 import Cards from './Cards';
 import { useMemo, useCallback, useState, useEffect } from 'react';
+import IdCopiar from './IdCopiar';
+
 // eslint-disable-next-line react/prop-types
 function Fetching({ valueDominio }) {
     const [datos, setDatos] = useState([]);
+    const [enlaces, setEnlaces] = useState([]);
 
     const sites = useMemo(
         () => [
@@ -29,22 +32,22 @@ function Fetching({ valueDominio }) {
         ],
         [],
     );
-
     const fetchCategoriaDominio = useCallback(
         async (valueDominio) => {
-            let resultadosTotales = [];
-
-            for (let i = 0; i < sites.length; i++) {
-                let site = sites[i];
-
-                const response = await fetch(
-                    `https://api.mercadolibre.com/catalog_domains/${site}-${valueDominio}/categories`,
-                );
-                const data = await response.json();
-
-                resultadosTotales.push({ sites, data });
+            if (valueDominio != null && valueDominio != undefined) {
+                let resultadosTotales = [];
+                let arrayConEnlaces = [];
+                for (let i = 0; i < sites.length; i++) {
+                    let site = sites[i];
+                    let enlace = `https://api.mercadolibre.com/catalog_domains/${site}-${valueDominio}/categories`;
+                    const response = await fetch(enlace);
+                    const data = await response.json();
+                    resultadosTotales.push({ sites, data });
+                    arrayConEnlaces.push(enlace);
+                }
+                setDatos(resultadosTotales);
+                setEnlaces(arrayConEnlaces);
             }
-            setDatos(resultadosTotales);
         },
         [sites],
     );
@@ -54,9 +57,13 @@ function Fetching({ valueDominio }) {
     }, [fetchCategoriaDominio, valueDominio]);
 
     return (
-        <div className="container-de-cards">
-            <p>Valor obtenido en Top: {valueDominio}</p>
-            <Cards uber={datos} sites={sites} />
+        <div className="main-wrapper">
+            <IdCopiar uber={datos} />
+
+            <div className="container-de-cards">
+                {/*<p>Valor obtenido en Top: {valueDominio}</p>*/}
+                <Cards uber={datos} sites={sites} enlaces={enlaces} />
+            </div>
         </div>
     );
 }

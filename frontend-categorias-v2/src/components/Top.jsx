@@ -11,17 +11,16 @@ function Top({ onValueDominio }) {
     };
 
     return (
-        <div>
-            <div>
-                <form onSubmit={handleClick}>
-                    <input
-                        type="text"
-                        name="input"
-                        placeholder="Ingrese un valor"
-                    />
-                    <button type="submit">Buscar</button>
-                </form>
-            </div>
+        <div className="top">
+            <form onSubmit={handleClick}>
+                <input
+                    type="text"
+                    name="input"
+                    placeholder="Ingrese un valor"
+                />
+                <button type="submit">Buscar</button>
+            </form>
+            <h1>Frontend Categorías</h1>
         </div>
     );
 }

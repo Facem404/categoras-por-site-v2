@@ -11,11 +11,11 @@ function App() {
     };
 
     return (
-        <>
+        <div className="main-wrapper">
             <Top onValueDominio={handleValueDominio} />
             <Fetching valueDominio={valueDominio} />
             <Foot />
-        </>
+        </div>
     );
 }
 
