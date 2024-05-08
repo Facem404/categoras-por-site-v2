@@ -21,10 +21,11 @@ function Cards({ uber, sites, enlaces }) {
                             Array.isArray(dato.data) &&
                             dato.data.map((subItem, subIndex) => (
                                 <li key={subIndex}>
+                                    {subItem.id}
                                     <a
                                         href={`https://api.mercadolibre.com/categories/${subItem.id}`}
                                         target="_blank">
-                                        {subItem.id}
+                                             - Enlace
                                     </a>{' '}
                                     - {subItem.name}
                                     <ArbolCategorias idCategoria={subItem.id} />
