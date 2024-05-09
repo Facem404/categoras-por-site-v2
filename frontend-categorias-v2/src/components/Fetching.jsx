@@ -7,6 +7,7 @@ import IdCopiar from './IdCopiar';
 function Fetching({ valueDominio }) {
     const [datos, setDatos] = useState([]);
     const [enlaces, setEnlaces] = useState([]);
+    const [clase, setClase] = useState([]);
 
     const sites = useMemo(
         () => [
@@ -45,6 +46,7 @@ function Fetching({ valueDominio }) {
                     resultadosTotales.push({ sites, data });
                     arrayConEnlaces.push(enlace);
                 }
+                setClase(resultadosTotales[0].data.length);
                 setDatos(resultadosTotales);
                 setEnlaces(arrayConEnlaces);
             }
@@ -62,7 +64,12 @@ function Fetching({ valueDominio }) {
 
             <div className="container-de-cards">
                 {/*<p>Valor obtenido en Top: {valueDominio}</p>*/}
-                <Cards uber={datos} sites={sites} enlaces={enlaces} />
+                <Cards
+                    uber={datos}
+                    sites={sites}
+                    enlaces={enlaces}
+                    clase={clase}
+                />
             </div>
         </div>
     );

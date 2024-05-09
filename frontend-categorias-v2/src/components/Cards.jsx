@@ -1,14 +1,16 @@
 import ArbolCategorias from './ArbolCategorias';
 import '../index.css';
 /* eslint-disable react/prop-types */
-function Cards({ uber, sites, enlaces }) {
+function Cards({ uber, sites, enlaces, clase }) {
     return (
         <>
             {uber.map((dato, index) => (
                 <div
                     key={index}
                     className={
-                        index === uber.length - 1 ? 'cards-largas' : 'card'
+                        index === uber.length - 1
+                            ? `card card-wide altura-${clase}`
+                            : `card card-width altura-${clase}`
                     }>
                     <div className="box-h4-a">
                         <h2>{sites[index]}</h2>
@@ -21,11 +23,11 @@ function Cards({ uber, sites, enlaces }) {
                             Array.isArray(dato.data) &&
                             dato.data.map((subItem, subIndex) => (
                                 <li key={subIndex}>
-                                    {subItem.id} - 
+                                    {subItem.id} -{' '}
                                     <a
                                         href={`https://api.mercadolibre.com/categories/${subItem.id}`}
                                         target="_blank">
-                                             Enlace
+                                        Enlace
                                     </a>{' '}
                                     - {subItem.name}
                                     <ArbolCategorias idCategoria={subItem.id} />
